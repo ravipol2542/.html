@@ -1,0 +1,34 @@
+{% extends "regis/layout.html" %} 
+
+{% block body %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 {
+  width: 100%;    
+  background-color: #f1f1c1;
+}
+</style>
+
+
+<div class="container">
+      <center><h1>Avaiable class for you</h1></center>
+      <center>
+     <table>
+        <tr><th> Course ID <th><th> Coure name <th><th> Semester <th><th> Academic year <th><th> Status <th></tr>
+        {% for cl in classinfo %}
+            <tr><td> {{cl.cID}} <td><td> {{cl.cName}} <td><td> {{cl.cTerm}} <td><td> {{cl.cYear}} <td><td> {{cl.statusCheck}} <td></tr>
+        {% endfor %}      
+     </table>
+     </center>
+</div>
+
+{% endblock %}
+
+<!--เรียกข้อมูลวิชาที่สามารถลงเรียนได้จาก model -->

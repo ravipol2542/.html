@@ -1,0 +1,33 @@
+{% extends "regis/layout.html" %} 
+
+{% block body %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 {
+  width: 100%;    
+  background-color: #f1f1c1;
+}
+</style>
+
+<div class="container">
+      <center><h1>Hello {{student_info.sName}}</h1></center>
+      <center><h3>This is your enrolled course</h3></center>
+      <ul>
+        {% for classes in class_info %}
+          <li> {{classes}} </li>
+        {% empty %}
+          <li>No class enrolled </li>
+        {% endfor %}
+      
+      </ul>     
+</div>
+
+<a href ="{% url 'logout' %}"> Logout </a>
+{% endblock %}
