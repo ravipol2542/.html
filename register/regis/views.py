@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
+
 def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -46,8 +47,12 @@ def studentinfo(request,sID):
 
     return render(request,'regis/student.html',context)
 
-def enroll(request, sID):
-    pass
+def enroll(request,student_ID):
+    if request.method == "POST":
+        student= Student.objects.get(pk=student_ID)
+        course = Course.objects.get(pk=request.POST["course_id"])
+        course.attendStd.add(student)
+    return HttpResponseRedirect(reverse("studentinfo",args=(student_ID)))
 
 
 

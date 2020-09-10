@@ -26,8 +26,30 @@ th, td {
           <li>No class enrolled </li>
         {% endfor %}
       
-      </ul>     
+      </ul>
+
+      <h2>Class avaiable for enroll.</h2>
+      
+      
+      
+      
+      <ul>
+        {%for classes1 in non_classinfo %}
+          {%if classes1.seatCheck == True %}
+            <li> {{classes1}} </li>
+          {% endif %}
+        {% empty %}
+          <li> No course to enroll. </li>
+        {% endfor %}
+      
+      
+      </ul>
+
 </div>
 
-<a href ="{% url 'logout' %}"> Logout </a>
+
+<a href ="{% url 'classcourse' %}"> <button>Check Course</button> </a><br><br>
+
+<a href ="{% url 'logout' %}"> <button>Logout </button></a><br>
+
 {% endblock %}

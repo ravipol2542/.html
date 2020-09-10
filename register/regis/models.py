@@ -16,18 +16,21 @@ class Course(models.Model):
     attendStd = models.ManyToManyField(Student,blank=True)
     
     def seatCheck(self):
-        if self.avaiable_seat > len(self.attendStd):
+        totalStd = self.attendStd.all().count()
+        if self.avaiable_seat > totalStd:
             return self.status == True
         else:
             return self.status == False
     
     
     def statusCheck(self):
-        if self.status == True:
+        status_info = self.seatCheck()
+        if status_info == True:
             return "Available"
         else:
             return "Closed"
             
+
    
     def __str__(self):
         return f"{self.cID}:{self.cName} Semester {self.cTerm} Academic year:{self.cYear}"

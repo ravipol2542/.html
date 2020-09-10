@@ -2,6 +2,14 @@
 
 
 {% block body %}
+    <center>
+        <h1> Hello this is enrollment system </h1>
+        <h2> Please Login </h2>
+    
+    </center>
+
+
+
     <form action = "{% url 'login' %}" method = "post">
         {% csrf_token %}
         <input type = "text" name="username">
