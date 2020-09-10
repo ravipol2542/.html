@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # localhost:8000/<-- homepage
     path('',include('regis.urls')),
-    path('login',include('regis.urls')),
-    path('classcourse',include('regis.urls')),
-    path('studentinfo',include('regis.urls'))
+    # path('login',include('regis.urls')),
+    # path('classcourse',include('regis.urls')),
+    # path('studentinfo',include('regis.urls'))
 ]

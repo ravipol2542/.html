@@ -22,6 +22,10 @@ th, td {
       <ul>
         {% for classes in class_info %}
           <li> {{classes}} </li>
+              <form action = "{% url 'withdraw'%}" method="POST">
+                  {% csrf_token %}
+                  <button name="Remove" type="submit" value="{{classes.cID}}"> Withdraw </button>
+              </form>
         {% empty %}
           <li>No class enrolled </li>
         {% endfor %}
@@ -36,8 +40,13 @@ th, td {
       <ul>
         {%for classes1 in non_classinfo %}
           {%if classes1.seatCheck == True %}
-            <li> {{classes1}} </li>
-          {% endif %}
+              <li>
+                  {{classes1}} <form action = "{% url 'enroll'%}" method="POST">{% csrf_token %}<button name="Add" type="submit" value="{{classes1.cID}}"> Enroll </button></form>
+
+                    
+                  
+              </li>
+            {% endif %}
         {% empty %}
           <li> No course to enroll. </li>
         {% endfor %}

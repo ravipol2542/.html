@@ -13,12 +13,15 @@ def login_view(request):
         user = authenticate(request, username=username,password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("login"))
+            # studentinfo(request,request.user.username)
+            std_info = studentinfo(request,request.user.username)
+            return render(request, "regis/student.html",std_info)
+            # return HttpResponseRedirect(reverse(studentinfo))
         else:
             return render(request, "regis/login.html",{
                 "message": "Invalid credentials"
             })
-    return studentinfo(request,request.user.username)
+    return render(request,"regis/login.html")
 
 def logout_view(request):
     logout(request)
@@ -39,20 +42,32 @@ def classcourse(request):
     return render(request,'regis/classcourse.html',context)
 
 def studentinfo(request,sID):
+    print(sID)
     student_info = Student.objects.get(sID=sID)
     class_info  = Course.objects.filter(attendStd = student_info)
     non_classinfo = Course.objects.exclude(attendStd = student_info).all()
     logged = logout_view
     context = {'student_info':student_info,"class_info":class_info,"non_classinfo":non_classinfo,"logged1":logged,}
 
-    return render(request,'regis/student.html',context)
+    return context
 
-def enroll(request,student_ID):
+def enroll(request):
     if request.method == "POST":
-        student= Student.objects.get(pk=student_ID)
-        course = Course.objects.get(pk=request.POST["course_id"])
+        course = Course.objects.get(cID=request.POST["Add"])
+        student = Student.objects.get(sID = request.user.username)
         course.attendStd.add(student)
-    return HttpResponseRedirect(reverse("studentinfo",args=(student_ID)))
+        std_info = studentinfo(request,request.user.username)
+        return render(request, "regis/student.html",std_info)
+
+def withdraw(request):
+    if request.method == "POST":
+        course = Course.objects.get(cID=request.POST["Remove"])
+        student = Student.objects.get(sID = request.user.username)
+        course.attendStd.remove(student)
+        std_info = studentinfo(request,request.user.username)
+        return render(request, "regis/student.html",std_info)
+
+
 
 
 
