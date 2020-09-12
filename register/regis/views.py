@@ -18,14 +18,14 @@ def login_view(request):
             return render(request, "regis/student.html",std_info)
             # return HttpResponseRedirect(reverse(studentinfo))
         else:
-            return render(request, "regis/login.html",{
+            return render(request, "regis/logintest.html",{
                 "message": "Invalid credentials"
             })
-    return render(request,"regis/login.html")
+    return render(request,"regis/logintest.html")
 
 def logout_view(request):
     logout(request)
-    return render(request, "regis/login.html",{
+    return render(request, "regis/logintest.html",{
         "message": "Logged out"
     })
 

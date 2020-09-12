@@ -29,6 +29,13 @@ class Course(models.Model):
             return "Available"
         else:
             return "Closed"
+
+    
+    def seatLeft(self):
+        seat = self.avaiable_seat
+        taken = self.attendStd.count()
+        left = seat - taken
+        return str(left)
             
 
    

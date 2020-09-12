@@ -21,9 +21,9 @@ th, td {
       <center><h1>Avaiable class for you</h1></center>
       <center>
      <table>
-        <tr><th> Course ID <th><th> Coure name <th><th> Semester <th><th> Academic year <th><th> Status <th></tr>
+        <tr><th> Course ID <th><th> Coure name <th><th> Semester <th><th> Academic year <th><th> Status <th><th> Seat Left </th></tr>
         {% for cl in classinfo %}
-            <tr><td> {{cl.cID}} <td><td> {{cl.cName}} <td><td> {{cl.cTerm}} <td><td> {{cl.cYear}} <td><td> {{cl.statusCheck}} <td></tr>
+            <tr><td> {{cl.cID}} <td><td> {{cl.cName}} <td><td> {{cl.cTerm}} <td><td> {{cl.cYear}} <td><td> {{cl.statusCheck}} <td><td><center> {{cl.seatLeft}}</center> <td></tr>
         {% endfor %}      
      </table>
      </center>
